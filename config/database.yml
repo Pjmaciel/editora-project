@@ -18,6 +18,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: <%= ENV["PROJECT_DATABASE_PASSWORD"] %>
 
 development:
   <<: *default
@@ -80,5 +82,5 @@ test:
 production:
   <<: *default
   database: editora_project_production
-  username: editora_project
-  password: <%= ENV["EDITORA_PROJECT_DATABASE_PASSWORD"] %>
+  username: postgres
+  password: <%= ENV["PROJECT_DATABASE_PASSWORD"] %>

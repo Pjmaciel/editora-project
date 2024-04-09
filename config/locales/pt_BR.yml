@@ -27,5 +27,4 @@
 #       "yes": yup
 #       enabled: "ON"
 
-en:
-  hello: "Hello world"
+pt_BR:

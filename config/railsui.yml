@@ -1,0 +1,39 @@
+--- !ruby/object:Railsui::Configuration
+application_name: Editora UI
+support_email: editoraUi@support.com
+theme: shepherd
+pages:
+- about
+- api
+- booking
+- bookings
+- contact
+- dashboard
+- edit_booking
+- new_booking
+- properties
+colors:
+  primary:
+    '50': "#f5f5f5"
+    '100': "#dbe2ef"
+    '200': "#c3c8d1"
+    '300': "#aab4c2"
+    '400': "#829ab1"
+    '500': "#5885af"
+    '600': "#426a90"
+    '700': "#33507a"
+    '800': "#23385a"
+    '900': "#152450"
+    '950': "#0e1833"
+  secondary:
+    '50': "#daa49a"
+    '100': "#c09585"
+    '200': "#a88b78"
+    '300': "#927a66"
+    '400': "#7c624d"
+    '500': "#66503c"
+    '600': "#503d2c"
+    '700': "#3b2c1d"
+    '800': "#281d10"
+    '900': "#160e04"
+    '950': "#0a0702"

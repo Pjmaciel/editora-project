@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :authors
 	get 'admin/contact', to: 'page#contact'
 	get 'admin/api', to: 'page#api'
 	get 'admin/edit_booking', to: 'page#edit_booking'

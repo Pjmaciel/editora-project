@@ -1,0 +1,20 @@
+<article id="<%= dom_id author %>" class="py-6 prose prose-zinc dark:prose-invert">
+    <p class="mb-0 font-heading font-medium">
+      Name
+    </p>
+    <p class="my-0">
+      <%= author.name %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Cpf
+    </p>
+    <p class="my-0">
+      <%= author.CPF %>
+    </p>
+
+   <p>
+    <%= link_to "View Author", author, class: "underline" %>
+  </p>
+
+  <time class="text-zinc-600 dark:text-zinc-400 text-xs" datetime="<%= author.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(author.created_at) + " ago" %></time>
+</article>

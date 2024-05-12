@@ -1,2 +1,0 @@
-class Assembly < ApplicationRecord
-end

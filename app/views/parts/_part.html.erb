@@ -1,8 +1,0 @@
-<article id="<%= dom_id part %>" class="py-6 prose prose-zinc dark:prose-invert">
-
-   <p>
-    <%= link_to "View Part", part, class: "underline" %>
-  </p>
-
-  <time class="text-zinc-600 dark:text-zinc-400 text-xs" datetime="<%= part.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(part.created_at) + " ago" %></time>
-</article>

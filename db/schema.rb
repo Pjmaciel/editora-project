@@ -78,6 +78,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_025532) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "parts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "value"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "cnpj"
     t.string "name"

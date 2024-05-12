@@ -8,7 +8,8 @@
 
   <div class="form-group">
     <%= form.label :CPF, class: "form-label" %>
-    <%= form.text_field :CPF, class: "form-input", maxlength: "11", title: "Digite apenas números", oninput: "this.value = this.value.replace(/[^0-9]/g, '')" %>  </div>
+    <%= form.number_field :CPF, class: "form-input" %>
+  </div>
 
   <div class="flex items-center justify-between flex-wrap">
     <div class="sm:flex-1 sm:mb-0 mb-6">

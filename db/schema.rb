@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_041519) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_12_044113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_041519) do
     t.index ["book_id"], name: "index_assemblies_on_book_id"
   end
 
+  create_table "assembly_parts", id: false, force: :cascade do |t|
+    t.bigint "assembly_id", null: false
+    t.bigint "part_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assembly_id"], name: "index_assembly_parts_on_assembly_id"
+    t.index ["part_id"], name: "index_assembly_parts_on_part_id"
+  end
+
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.string "CPF"
@@ -121,6 +130,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_041519) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assemblies", "books"
+  add_foreign_key "assembly_parts", "assemblies"
+  add_foreign_key "assembly_parts", "parts"
   add_foreign_key "books", "authors"
   add_foreign_key "parts", "suppliers"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_12_033053) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_12_041519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_033053) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.bigint "book_id", null: false
+    t.index ["book_id"], name: "index_assemblies_on_book_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -118,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_12_033053) do
   add_foreign_key "accounts", "suppliers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assemblies", "books"
   add_foreign_key "books", "authors"
   add_foreign_key "parts", "suppliers"
 end

@@ -1,0 +1,20 @@
+<article id="<%= dom_id supplier %>" class="py-6 prose prose-zinc dark:prose-invert">
+    <p class="mb-0 font-heading font-medium">
+      Cnpj
+    </p>
+    <p class="my-0">
+      <%= supplier.CNPJ %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Name
+    </p>
+    <p class="my-0">
+      <%= supplier.name %>
+    </p>
+
+   <p>
+    <%= link_to "View Supplier", supplier, class: "underline" %>
+  </p>
+
+  <time class="text-zinc-600 dark:text-zinc-400 text-xs" datetime="<%= supplier.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(supplier.created_at) + " ago" %></time>
+</article>

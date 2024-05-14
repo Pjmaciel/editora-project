@@ -1,5 +1,16 @@
 <article id="<%= dom_id assembly %>" class="py-6 prose prose-zinc dark:prose-invert">
-
+    <p class="mb-0 font-heading font-medium">
+      Name
+    </p>
+    <p class="my-0">
+      <%= assembly.name %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      Book
+    </p>
+    <p class="my-0">
+      <%= assembly.book_id %>
+    </p>
    <p>
     <%= link_to "View Assembly", assembly, class: "underline" %>
   </p>

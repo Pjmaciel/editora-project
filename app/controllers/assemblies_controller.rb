@@ -65,6 +65,8 @@ class AssembliesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def assembly_params
-      params.fetch(:assembly, {})
+      params.require(:assembly).permit(:name, :book_id)
     end
+
+
 end

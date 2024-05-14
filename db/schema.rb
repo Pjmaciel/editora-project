@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_010659) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_12_044113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "account_number"
+    t.bigint "supplier_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "checksum"
+    t.index ["supplier_id"], name: "index_accounts_on_supplier_id"
+  end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +61,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_010659) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "assemblies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.bigint "book_id", null: false
+    t.index ["book_id"], name: "index_assemblies_on_book_id"
+  end
+
+  create_table "assembly_parts", id: false, force: :cascade do |t|
+    t.bigint "assembly_id", null: false
+    t.bigint "part_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assembly_id"], name: "index_assembly_parts_on_assembly_id"
+    t.index ["part_id"], name: "index_assembly_parts_on_part_id"
+  end
+
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.string "CPF"
@@ -69,6 +95,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_010659) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "parts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "value"
+    t.bigint "supplier_id", null: false
+    t.index ["supplier_id"], name: "index_parts_on_supplier_id"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string "cnpj"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -84,7 +126,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_010659) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accounts", "suppliers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assemblies", "books"
+  add_foreign_key "assembly_parts", "assemblies"
+  add_foreign_key "assembly_parts", "parts"
   add_foreign_key "books", "authors"
+  add_foreign_key "parts", "suppliers"
 end

@@ -14,6 +14,10 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
+gem "turbo-rails"
+
+gem 'stimulus-rails'
+
 gem "railsui", github: "getrailsui/railsui"
 
 

@@ -1,0 +1,27 @@
+<article id="<%= dom_id part %>" class="py-6 prose prose-zinc dark:prose-invert">
+    <p class="mb-0 font-heading font-medium">
+      Name
+    </p>
+    <p class="my-0">
+      <%= part.name %>
+    </p>
+    <p class="mb-0 font-heading font-medium">
+      value
+    </p>
+    <p class="my-0">
+      <%= part.value %>
+    </p>
+
+  <p class="mb-0 font-heading font-medium">
+    Supplier
+  </p>
+  <p class="my-0">
+    <%= part.supplier_id %>
+  </p>
+
+   <p>
+    <%= link_to "View Part", part, class: "underline" %>
+  </p>
+
+  <time class="text-zinc-600 dark:text-zinc-400 text-xs" datetime="<%= part.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(part.created_at) + " ago" %></time>
+</article>

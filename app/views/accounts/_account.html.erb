@@ -16,5 +16,7 @@
     <%= link_to "View Account", account, class: "underline" %>
   </p>
 
+
+
   <time class="text-zinc-600 dark:text-zinc-400 text-xs" datetime="<%= account.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(account.created_at) + " ago" %></time>
 </article>

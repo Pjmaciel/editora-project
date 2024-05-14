@@ -18,6 +18,7 @@
     <div class="flex items-center justify-between">
       <h1 class="text-4xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight flex-1">account #<%= @account.id %></h1>
       <%= link_to "Edit", edit_account_path(@account), class: "btn btn-white" %>
+      <%= link_to "Delete", account_path(@account),data: { 'turbo-method': :delete, 'turbo-confirm': 'Confirmar'}, class: "btn btn-dark", style: "margin-left: 10px;" %>
     </div>
   </div>
   <%= render @account %>

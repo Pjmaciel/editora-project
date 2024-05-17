@@ -1,4 +1,4 @@
-class Api::V1::SupplierController < ApplicationController
+class Api::V1::SuppliersController < ApplicationController
   before_action :set_supplier, only: [:show, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
@@ -8,7 +8,7 @@ class Api::V1::SupplierController < ApplicationController
   end
 
   def update
-    render_supplier_response(@supplier.update(supplier_params))
+    render_supplier_response(@supplier.update(supplier_params), @supplier)
   end
 
   def index
@@ -20,10 +20,16 @@ class Api::V1::SupplierController < ApplicationController
   end
 
   def destroy
-    render_supplier_response(@supplier.destroy)
+    render_supplier_response(@supplier.destroy, @supplier)
   end
 
   private
+
+  def set_supplier
+    @supplier = Supplier.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Fornecedor não encontrado' }, status: :not_found
+  end
 
   def supplier_params
     params.require(:supplier).permit(:name, :cnpj)

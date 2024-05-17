@@ -1,0 +1,33 @@
+###
+GET http://localhost:3000/api/v1/books
+
+###
+GET http://localhost:3000/api/v1/books/1
+###
+POST http://localhost:3000/api/v1/books
+Content-Type:  application/json
+
+{
+  "book": {
+    "name" : "livroIde",
+    "ISBN" : "9788533302273",
+    "author_id" : 1
+  }
+}
+
+###
+PUT http://localhost:3000/api/v1/books/2
+Content-Type:  application/json
+
+{
+  "book": {
+    "name" : "livroIde_alterado",
+    "ISBN" : "9788533300273",
+    "author_id" : 1
+  }
+}
+
+###
+DELETE http://localhost:3000/api/v1/books/3
+
+###

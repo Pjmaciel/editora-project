@@ -37,7 +37,7 @@ class Api::V1::AuthorsController < ApplicationController
 
   def render_author_response(success, author = nil)
     if success
-      render json: { message: 'Operation successful', author: author }, status: :ok
+      render json: { message: 'Operaçao realizada com sucesso', author: author }, status: :ok
     else
       render json: { errors: author&.errors&.full_messages || ['Operation failed'] }, status: :unprocessable_entity
     end

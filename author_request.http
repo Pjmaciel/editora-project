@@ -9,23 +9,23 @@ Content-Type:  application/json
 
 {
   "author": {
-    "name" : "RubyApi",
-    "CPF" : "06661881498"
+    "name" : "RubyApit",
+    "CPF" : "07661881498"
   }
 }
 
 ###
-PUT http://localhost:3000/api/v1/authors/1
+PUT http://localhost:3000/api/v1/authors/2
 Content-Type:  application/json
 
 {
   "author": {
-    "name" : "trocoudois",
-    "CPF" : "16661881491"
+    "name" : "trocoutres",
+    "CPF" : "16665881491"
   }
 }
 
 ###
-DELETE http://localhost:3000/api/v1/authors/2
+DELETE http://localhost:3000/api/v1/authors/3
 
 ###

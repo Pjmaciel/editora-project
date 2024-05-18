@@ -8,7 +8,17 @@
 
   <div class="form-group">
     <%= form.label :book_id, class: "form-label" %>
-    <%= form.text_field :book_id, class: "form-input" %>
+    <%= form.select :book_id, options_from_collection_for_select(@books, :id, :title), class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :part_ids, "Select Parts", class: "form-label" %><br>
+    <%= form.collection_check_boxes :part_ids, @parts, :id, :name do |b| %>
+      <div class="form-check">
+        <%= b.check_box(class: "form-check-input") %>
+        <%= b.label(class: "form-check-label") %>
+      </div>
+    <% end %>
   </div>
 
   <div class="flex items-center justify-between flex-wrap">
@@ -19,7 +29,7 @@
     <% if form.object.new_record? %>
       <%= link_to "Cancel", assemblies_path, class: "btn btn-white" %>
     <% else %>
-      <%= link_to "Cancel", assembly_path(@assembly), class: "btn btn-white" %>
+      <%= link_to "Cancel", assembly_path(assembly), class: "btn btn-white" %>
     <% end %>
   </div>
 <% end %>

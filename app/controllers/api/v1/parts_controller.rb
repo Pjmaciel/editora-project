@@ -3,7 +3,7 @@ class Api::V1::PartsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    part = part.new(part_params)
+    part = Part.new(part_params)
     render_part_response(part.save, part)
   end
 
@@ -25,13 +25,19 @@ class Api::V1::PartsController < ApplicationController
 
   private
 
+  def set_part
+    @part = Part.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Fornecedor não encontrado' }, status: :not_found
+  end
+
   def part_params
     params.require(:part).permit(:name, :value, :supplier_id)
   end
 
   def render_part_response(success, part = nil)
     if success
-      render json: { message: 'Operaçao realizada com sucesso', part: part}, status: ok
+      render json: { message: 'Operaçao realizada com sucesso', part: part}, status: :ok
     else
       render json: { errors: part&.errors&.full_messages || [' A Operação falhou']}, status: :unprocessable_entity
     end

@@ -1,0 +1,33 @@
+###
+GET http://localhost:3000/api/v1/parts
+
+###
+GET http://localhost:3000/api/v1/parts/2
+###
+POST http://localhost:3000/api/v1/parts
+Content-Type:  application/json
+
+{
+  "part": {
+    "name" : "capduraIdedois",
+    "value" : "5",
+    "supplier_id" : 1
+  }
+}
+
+###
+PUT http://localhost:3000/api/v1/parts/2
+Content-Type:  application/json
+
+{
+  "part": {
+    "name" : "peca alterada pela ide",
+    "value" : "6",
+    "supplier_id" : 1
+  }
+}
+
+###
+DELETE http://localhost:3000/api/v1/parts/3
+
+###

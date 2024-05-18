@@ -25,6 +25,12 @@ class Api::V1::BooksController < ApplicationController
 
   private
 
+  def set_book
+    @book = Book.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Fornecedor não encontrado' }, status: :not_found
+  end
+
   def book_params
     params.require(:book).permit(:title, :ISBN, :author_id)
   end

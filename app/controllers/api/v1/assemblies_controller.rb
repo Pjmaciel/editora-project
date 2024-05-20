@@ -32,15 +32,20 @@ class Api::V1::AssembliesController < ApplicationController
   end
 
   def assembly_params
-    params.require(:assembly).permit(:name, :cnpj)
+    params.require(:assembly).permit(:name, :book_id, part_ids: [])
   end
 
   def render_assembly_response(success, assembly = nil)
     if success
-      render json: { message: ' Operação realizada com sucesso', assembly: assembly}, status: :ok
+      part_id_name_hash = Part.joins(:assemblies).where(assemblies: { id: assembly.id }).pluck(:id, :name).to_h
+      render json: { message: 'Operação realizada com sucesso', assembly: assembly.as_json.merge(parts_names:  part_id_name_hash) }, status: :ok
     else
-      render json: { errors: assembly&.errors&.full_messages || [ 'A Operaçao falhou']}, status: :unprocessable_entity
+      render json: { errors: assembly&.errors&.full_messages || ['A operação falhou'] }, status: :unprocessable_entity
     end
   end
-  
+
+
+
+
+
 end

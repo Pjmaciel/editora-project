@@ -1,0 +1,31 @@
+###
+GET http://localhost:3000/api/v1/authors
+
+###
+GET http://localhost:3000/api/v1/authors/4
+###
+POST http://localhost:3000/api/v1/authors
+Content-Type:  application/json
+
+{
+  "author": {
+    "name" : "AutordaAPI",
+    "CPF" : "07661874498"
+  }
+}
+
+###
+PUT http://localhost:3000/api/v1/authors/6
+Content-Type:  application/json
+
+{
+  "author": {
+    "name" : "trocoutres",
+    "CPF" : "16665882491"
+  }
+}
+
+###
+DELETE http://localhost:3000/api/v1/authors/6
+
+###

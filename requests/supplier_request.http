@@ -1,0 +1,31 @@
+###
+GET http://localhost:3000/api/v1/suppliers
+
+###
+GET http://localhost:3000/api/v1/suppliers/1
+###
+POST http://localhost:3000/api/v1/suppliers
+Content-Type:  application/json
+
+{
+  "supplier": {
+    "name" : "fornecedorIDE",
+    "cnpj" : "98498560150112"
+  }
+}
+
+###
+PUT http://localhost:3000/api/v1/suppliers/3
+Content-Type:  application/json
+
+{
+  "supplier": {
+    "name" : "fornecedorIdelterado",
+    "cnpj" : "49849856008711"
+  }
+}
+
+###
+DELETE http://localhost:3000/api/v1/suppliers/3
+
+###

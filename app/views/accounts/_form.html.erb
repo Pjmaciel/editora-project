@@ -1,15 +1,21 @@
+<% if notice %>
+  <div class="bg-secondary-600 text-white text-center p-4" role="alert" data-controller="alert">
+    <p><%= sanitize notice %></p>
+  </div>
+<% end %>
+
 <%= form_with(model: account) do |form| %>
   <%= render "shared/error_messages", resource: form.object %>
 
   <div class="flex flex-row justify-center">
     <div class="form-group mr-3">
       <%= form.label :account_number, 'N° da Conta', class: "form-label block text-center" %>
-      <%= form.text_field :account_number, class: "form-input w-28 text-sm justify-left mx-auto" %>
+      <%= form.text_field :account_number, class: "form-input w-24 text-sm justify-left" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :checksum, "Dígito", class: "form-label block text-center" %>
-      <%= form.text_field :checksum, class: "form-input w-12 text-sm mx-auto" %>
+      <%= form.label :checksum, "Dígito", class: "form-label" %>
+      <%= form.text_field :checksum, class: "form-input w-12 text-sm" %>
     </div>
   </div>
 
@@ -29,4 +35,5 @@
       <%= link_to "Cancel", account_path(@account), class: "btn btn-white" %>
     <% end %>
   </div>
+
 <% end %>

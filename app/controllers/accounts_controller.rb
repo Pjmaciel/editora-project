@@ -3,7 +3,12 @@ class AccountsController < ApplicationController
 
   # GET /accounts or /accounts.json
   def index
-    @accounts = Account.all
+    @q = Account.ransack(params[:q])
+    @accounts = @q.result(distinct: true)
+
+    if params[:sort].present?
+      @accounts = @accounts.order(params[:sort])
+    end
   end
 
   # GET /accounts/1 or /accounts/1.json

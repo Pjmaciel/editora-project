@@ -16,7 +16,11 @@ class Account < ApplicationRecord
     end
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    ["supplier"]
+  end
+
   def self.ransackable_attributes(auth_object = nil)
-    [:account_number]
+    %w[account_number]
   end
 end

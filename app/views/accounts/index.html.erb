@@ -6,9 +6,11 @@
         <button type="button" class="btn btn-white lg:order-1 order-2 py-2 lg:hidden block peer group">
           <%= icon "magnifying-glass", classes: "stroke-current dark:text-zinc-400 w-6 h-6 dark:group-focus:text-primary-500/90" %>
         </button>
+
         <%= search_form_for @q, url: accounts_path, method: :get, html: { id: "search-form" } do |f| %>
           <%= f.search_field :account_number_cont, id: "search-input", class: "form-input lg:w-auto w-full", placeholder: "Search" %>
         <% end %>
+
         <div class="flex items-center lg:justify-start justify-center lg:order-1 order-2">
           <%= dropdown do %>
             <li>

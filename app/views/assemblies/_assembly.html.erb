@@ -1,21 +1,13 @@
 <article id="<%= dom_id(assembly) %>" class="py-6 prose prose-zinc dark:prose-invert">
-  <p class="mb-0 font-heading font-medium">
-    Name
-  </p>
+  <p class="mb-0 font-heading font-medium">Name</p>
+  <p class="my-0"><%= assembly.name %></p>
+
+  <p class="mb-0 font-heading font-medium">Book</p>
   <p class="my-0">
-    <%= assembly.name %>
+    <%= assembly.book&.title || "No book associated" %>
   </p>
 
-  <p class="mb-0 font-heading font-medium">
-    Book
-  </p>
-  <p class="my-0">
-    <%= assembly.book.title %>
-  </p>
-
-  <p class="mb-0 font-heading font-medium">
-    Parts
-  </p>
+  <p class="mb-0 font-heading font-medium">Parts</p>
   <ul class="my-0">
     <% assembly.parts.each do |part| %>
       <li><%= part.name %> - Value: <%= part.value %></li>

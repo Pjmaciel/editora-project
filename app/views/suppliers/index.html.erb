@@ -1,12 +1,114 @@
-<div class="max-w-3xl mx-auto px-4 my-16">
-  <div class="flex items-center justify-between pb-6 border-b dark:border-zinc-700 border-zinc-200">
-    <h1 class="text-4xl font-medium font-heading text-zinc-900 dark:text-zinc-100 tracking-tight">Suppliers</h1>
-    <div class="flex items-center justify-end">
-      <%= link_to "New Supplier", new_supplier_path, class: "btn btn-primary" %>
+<div class="container mx-auto px-4 md:py-16 py-6 md:mb-16">
+  <div class="md:flex items-center justify-between">
+    <h1 class="mb:mb-0 mb-6 text-4xl font-semibold font-heading text-zinc-900 dark:text-zinc-100 tracking-tight">Suppliers</h1>
+    <div class="md:flex items-center md:space-x-6">
+      <div class="flex lg:flex-row flex-row-reverse flex-wrap items-center lg:space-x-6 lg:w-auto w-full justify-between">
+        <button type="button" class="btn btn-white lg:order-1 order-2 py-2 lg:hidden block peer group">
+          <%= icon "magnifying-glass", classes: "stroke-current dark:text-zinc-400 w-6 h-6 dark:group-focus:text-primary-500/90" %>
+        </button>
+
+        <form id="search-form" action="<%= suppliers_path %>" method="get" class="lg:block hidden peer-focus:block lg:order-1 order-4 lg:pt-0 pt-4 w-full lg:w-auto">
+          <input type="search" name="q[name_cont]" id="search-input" class="form-input lg:w-auto w-full mt-4" placeholder="Search by supplier name" value="<%= params.dig(:q, :name_cont) %>" />
+          <input type="search" name="author_name" id="author-search-input" class="form-input lg:w-auto w-full mt-4 hidden" placeholder="Search by author name" value="<%= params[:author_name] %>" />
+          <div class="flex justify-center mt-2">
+            <div class="flex items-center align-middle text-sm space-x-2">
+              <input type="checkbox" id="author-search-checkbox" class="form-checkbox" />
+              <label for="author-search-checkbox" class="ml-2 text-right">Search by author name</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <%= link_to "Create supplier", new_supplier_path, class: "btn btn-primary md:mt-0 mt-6" %>
     </div>
   </div>
 
-  <div id="suppliers" class="divide-y divide-zinc-200 dark:divide-zinc-700">
-    <%= render @suppliers %>
+  <div class="p-4" data-tabs-target="panel">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm min-w-full border-collapse">
+        <thead>
+        <tr>
+          <th class="text-zinc-600 dark:text-zinc-300 font-sans font-medium md:whitespace-normal whitespace-nowrap md:px-0 p-4">Supplier Name</th>
+          <th class="text-zinc-600 dark:text-zinc-300 font-sans font-medium md:whitespace-normal whitespace-nowrap md:px-0 p-4">CNPJ</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody class="text-zinc-800 divide-y divide-zinc-200/80 dark:divide-zinc-700">
+        <% @suppliers.each do |supplier| %>
+          <%= render partial: "supplier", locals: { supplier: supplier } %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
+
+  <nav aria-label="Page navigation" class="text-zinc-500 sm:text-sm text-base font-medium dark:text-zinc-300">
+    <ul class="flex flex-wrap items-center sm:justify-between justify-center">
+      <li class="flex-1 flex justify-start items-center sm:w-auto w-full">
+        <%= link_to "Previous", "#", class: "btn btn-white" %>
+      </li>
+      <div class="flex items-center justify-center sm:w-auto w-full sm:text-sm text-lg">
+        <li>
+          <%= link_to "1", "#", class:"py-2 px-4 border-t-2 block border-primary-500 hover:bg-primary-50/50 text-primary-600 dark:text-primary-400 dark:border-primary-400 dark:hover:bg-primary-500/30" %>
+            </li>
+            <li>
+              <%= link_to "2", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+                </li>
+                <li>
+                  <%= link_to "3", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+                    </li>
+                    <li>
+                      <span class="py-2 px-4 block border-t-2 border-transparent rounded pointer-events-none select-none">&hellip;</span>
+                    </li>
+                    <li>
+                      <%= link_to "8", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+                        </li>
+                        <li>
+                          <%= link_to "9", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+                            </li>
+                            <li>
+                              <%= link_to "10", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+                                </li>
+                                </div>
+                                <li class="flex-1 flex justify-end items-center">
+                                  <%= link_to "Next", "#", class:"btn btn-white" %>
+                                    </li>
+                                    </ul>
+                                    </nav>
 </div>
+
+
+<%= render "shared/footer" %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('search-input');
+        const authorSearchInput = document.getElementById('author-search-input');
+        const searchForm = document.getElementById('search-form');
+        const authorSearchCheckbox = document.getElementById('author-search-checkbox');
+
+        const toggleAuthorSearch = () => {
+            if (authorSearchCheckbox.checked) {
+                authorSearchInput.classList.remove('hidden');
+                searchInput.classList.add('hidden');
+            } else {
+                authorSearchInput.classList.add('hidden');
+                searchInput.classList.remove('hidden');
+            }
+        };
+
+        const submitForm = () => {
+            searchForm.submit();
+        };
+
+        authorSearchCheckbox.addEventListener('change', toggleAuthorSearch);
+        searchInput.addEventListener('input', submitForm);
+        authorSearchInput.addEventListener('input', submitForm);
+
+        toggleAuthorSearch(); // Initialize the correct state on page load
+
+        const length = searchInput.value.length;
+        searchInput.focus();
+        searchInput.setSelectionRange(length, length);
+    });
+</script>

@@ -15,4 +15,12 @@ class Account < ApplicationRecord
       errors.add(:checksum, "Dígito verificador incorreto")
     end
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["supplier"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[account_number]
+  end
 end

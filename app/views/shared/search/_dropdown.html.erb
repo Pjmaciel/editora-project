@@ -1,0 +1,16 @@
+<div data-controller="dropdown" class="relative">
+  <button data-action="click->dropdown#toggle click@window->dropdown#hide" data-dropdown-target="trigger"
+          type="button" class="btn btn-white rounded-l-full rounded-r-none border-r-0 group py-2">
+    <%= icon "adjustments-horizontal", classes: "text-zinc-600 w-6 h-6 stroke-current group-hover:text-primary-600 dark:text-zinc-300/80 dark:group-hover:text-primary-500" %>
+  </button>
+  <ul data-dropdown-target="menu"
+      class="hidden transition transform md:origin-top-right origin-top-left absolute left-0 top-12 bg-white rounded-lg shadow-xl shadow-zinc-900/10 border border-zinc-200 w-[200px] z-50 py-1 dark:bg-zinc-900 dark:shadow-zinc-900/50 dark:border-zinc-500/60 md:text-[15px] text-base font-normal text-zinc-600 dark:text-zinc-200 font-heading"
+      data-transition-enter-active="transition ease-out duration-300"
+      data-transition-enter-from="transform opacity-0 scale-95"
+      data-transition-enter-to="transform opacity-100 scale-100"
+      data-transition-leave-active="transition ease-in duration-300"
+      data-transition-leave-from="transform opacity-100 scale-100"
+      data-transition-leave-to="transform opacity-0 scale-95">
+    <%= yield %>
+  </ul>
+</div>

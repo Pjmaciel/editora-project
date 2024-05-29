@@ -14,6 +14,11 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
+#search and filter
+gem 'ransack'
+gem "searchkick"
+gem "elasticsearch"
+
 gem "turbo-rails"
 
 gem 'stimulus-rails'

@@ -1,9 +1,14 @@
 class SuppliersController < ApplicationController
-  before_action :set_supplier, only: %i[ show edit update destroy ]
+  before_action :set_supplier, only: %i[show edit update destroy]
 
   # GET /suppliers or /suppliers.json
   def index
-    @suppliers = Supplier.all
+    @q = Supplier.ransack(params[:q])
+    @suppliers = @q.result(distinct: true)
+
+    if params[:sort].present?
+      @suppliers = @suppliers.order(params[:sort])
+    end
   end
 
   # GET /suppliers/1 or /suppliers/1.json
@@ -50,7 +55,6 @@ class SuppliersController < ApplicationController
   # DELETE /suppliers/1 or /suppliers/1.json
   def destroy
     @supplier.destroy!
-
     respond_to do |format|
       format.html { redirect_to suppliers_url, notice: "Supplier was successfully destroyed." }
       format.json { head :no_content }
@@ -58,13 +62,14 @@ class SuppliersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_supplier
-      @supplier = Supplier.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def supplier_params
-      params.require(:supplier).permit(:cnpj, :name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_supplier
+    @supplier = Supplier.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def supplier_params
+    params.require(:supplier).permit(:cnpj, :name)
+  end
 end

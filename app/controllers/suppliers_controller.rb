@@ -5,10 +5,6 @@ class SuppliersController < ApplicationController
   def index
     @q = Supplier.ransack(params[:q])
     @suppliers = @q.result(distinct: true)
-
-    if params[:sort].present?
-      @suppliers = @suppliers.order(params[:sort])
-    end
   end
 
   # GET /suppliers/1 or /suppliers/1.json

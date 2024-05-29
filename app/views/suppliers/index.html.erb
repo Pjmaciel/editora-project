@@ -12,8 +12,7 @@
         <div class="flex items-center lg:justify-start justify-center lg:order-1 order-2">
           <%= dropdown do %>
             <li>
-              <label for="sort_ascending"
-                     class="py-3 px-4 hover:text-primary-600 focus:text-primary-600 w-full group text-zinc-600 dark:text-zinc-50 dark:hover:text-zinc-300 space-x-2 flex items-center justify-between group select-none">
+              <label for="sort_ascending" class="py-3 px-4 hover:text-primary-600 focus:text-primary-600 w-full group text-zinc-600 dark:text-zinc-50 dark:hover:text-zinc-300 space-x-2 flex items-center justify-between group select-none">
                 <div class="flex-1">
                   <input id="sort_ascending" type="radio" class="form-input-radio" name="sort" value="name ASC" />
                   <span class="pl-2">Ascending</span>
@@ -22,8 +21,7 @@
               </label>
             </li>
             <li>
-              <label for="sort_descending"
-                     class="py-3 px-4 hover:text-primary-600 focus:text-primary-600 w-full group text-zinc-600 dark:text-zinc-50 dark:hover:text-zinc-300 space-x-2 flex items-center justify-between group select-none">
+              <label for="sort_descending" class="py-3 px-4 hover:text-primary-600 focus:text-primary-600 w-full group text-zinc-600 dark:text-zinc-50 dark:hover:text-zinc-300 space-x-2 flex items-center justify-between group select-none">
                 <div class="flex-1">
                   <input id="sort_descending" type="radio" name="sort" class="form-input-radio" value="name DESC" />
                   <span class="pl-2">Descending</span>
@@ -40,13 +38,33 @@
           </button>
         </div>
       </div>
-      <%= link_to "Create supplier", (defined?(new_supplier_path) ? new_supplier_path : "#"), class: "btn btn-primary md:mt-0 mt-6" %>
+      <%= link_to "Create supplier", new_supplier_path, class: "btn btn-primary md:mt-0 mt-6" %>
     </div>
   </div>
 
-  <%= render @suppliers %>
+  <div class="overflow-x-auto">
+    <table class="w-full text-left text-sm min-w-full border-collapse">
+      <thead>
+      <tr>
+        <th class="text-zinc-600 dark:text-zinc-300 font-sans font-medium md:whitespace-normal whitespace-nowrap md:px-0 p-4">Supplier Name</th>
+        <th class="text-zinc-600 dark:text-zinc-300 font-sans font-medium md:whitespace-normal whitespace-nowrap md:px-0 p-4">CNPJ</th>
+      </tr>
+      </thead>
+      <tbody class="text-zinc-800 divide-y divide-zinc-200/80 dark:divide-zinc-700">
+      <% @suppliers.each do |supplier| %>
+        <tr class="md:whitespace-normal whitespace-nowrap">
+          <td class="align-top md:px-0 p-4 dark:text-zinc-100">
+            <p><%= link_to supplier.name, supplier %></p>
+          </td>
+          <td class="align-top md:px-0 p-4 dark:text-zinc-100 font-sans">
+            <%= supplier.cnpj %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 
-  <!-- Check the Rails UI design system for other designs and pagy support -->
   <nav aria-label="Page navigation" class="text-zinc-500 sm:text-sm text-base font-medium dark:text-zinc-300">
     <ul class="flex flex-wrap items-center sm:justify-between justify-center">
       <li class="flex-1 flex justify-start items-center sm:w-auto w-full">
@@ -92,6 +110,7 @@
         searchInput.addEventListener('input', () => {
             searchForm.submit();
         });
+
         const length = searchInput.value.length;
         searchInput.focus();
         searchInput.setSelectionRange(length, length);

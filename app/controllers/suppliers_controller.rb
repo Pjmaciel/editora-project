@@ -3,8 +3,14 @@ class SuppliersController < ApplicationController
 
   # GET /suppliers or /suppliers.json
   def index
-    @q = Supplier.ransack(params[:q])
-    @suppliers = @q.result(distinct: true)
+    if params[:author_name].present?
+      @suppliers = Supplier.joins(parts: { assemblies: { book: :author } })
+                           .where("authors.name ILIKE ?", "%#{params[:author_name]}%")
+                           .distinct
+    else
+      @q = Supplier.ransack(params[:q])
+      @suppliers = @q.result(distinct: true)
+    end
   end
 
   # GET /suppliers/1 or /suppliers/1.json

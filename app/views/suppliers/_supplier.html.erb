@@ -1,36 +1,18 @@
-<!-- ALL suppliers -->
-<div class="p-4" data-tabs-target="panel">
-  <div class="overflow-x-auto">
-    <table class="w-full text-left text-sm min-w-full border-collapse">
-      <thead>
-      <tr>
-        <th class="text-zinc-600 dark:text-zinc-300 font-sans font-medium md:whitespace-normal whitespace-nowrap md:px-0 p-4">Supplier Name</th>
-        <th class="text-zinc-600 dark:text-zinc-300 font-sans font-medium md:whitespace-normal whitespace-nowrap md:px-0 p-4">CNPJ</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody class="text-zinc-800 divide-y divide-zinc-200/80 dark:divide-zinc-700">
-      <% @suppliers.each do |supplier| %>
-        <tr class="md:whitespace-normal whitespace-nowrap">
-          <td class="align-top md:px-0 p-4 dark:text-zinc-100">
-            <p><%= link_to supplier.name, supplier %></p>
-          </td>
-          <td class="align-top md:px-0 p-4 dark:text-zinc-100 font-sans">
-            <%= supplier.cnpj %>
-          </td>
-          <td class="align-top pt-2">
-            <%= actions_dropdown do %>
-              <li>
-                <%= link_to supplier, class: "px-4 md:py-2 py-3 flex items-center justify-between hover:text-zinc-900 text-zinc-700 dark:text-zinc-200 dark:hover:text-white" do %>
-                  <span>Go to supplier</span>
-                  <%= icon "chevron-right", classes: "md:hidden block w-5 h-5 text-zinc-500/60 dark:text-zinc-400" %>
-                <% end %>
-              </li>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+<tr class="md:whitespace-normal whitespace-nowrap">
+  <td class="align-top md:px-0 p-4 dark:text-zinc-100">
+    <p><%= link_to supplier.name, supplier %></p>
+  </td>
+  <td class="align-top md:px-0 p-4 dark:text-zinc-100 font-sans">
+    <%= supplier.cnpj %>
+  </td>
+  <td class="align-top pt-2">
+    <%= actions_dropdown do %>
+      <li>
+        <%= link_to supplier, class: "px-4 md:py-2 py-3 flex items-center justify-between hover:text-zinc-900 text-zinc-700 dark:text-zinc-200 dark:hover:text-white" do %>
+          <span>Go to supplier</span>
+          <%= icon "chevron-right", classes: "md:hidden block w-5 h-5 text-zinc-500/60 dark:text-zinc-400" %>
+        <% end %>
+      </li>
+    <% end %>
+  </td>
+</tr>

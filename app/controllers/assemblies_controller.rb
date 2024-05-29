@@ -2,21 +2,17 @@ class AssembliesController < ApplicationController
   before_action :set_assembly, only: %i[show edit update destroy]
   before_action :get_books_and_parts, only: %i[new edit create update]
 
-  # GET /assemblies or /assemblies.json
   def index
-    @assemblies = Assembly.all
+    @assemblies = Assembly.includes(:book, :parts).all
   end
 
-  # GET /assemblies/1 or /assemblies/1.json
   def show
   end
 
-  # GET /assemblies/new
   def new
     @assembly = Assembly.new
   end
 
-  # POST /assemblies or /assemblies.json
   def create
     @assembly = Assembly.new(assembly_params)
 
@@ -31,11 +27,9 @@ class AssembliesController < ApplicationController
     end
   end
 
-  # GET /assemblies/1/edit
   def edit
   end
 
-  # PATCH/PUT /assemblies/1 or /assemblies/1.json
   def update
     respond_to do |format|
       if @assembly.update(assembly_params)
@@ -48,7 +42,6 @@ class AssembliesController < ApplicationController
     end
   end
 
-  # DELETE /assemblies/1 or /assemblies/1.json
   def destroy
     @assembly.destroy
     respond_to do |format|
@@ -65,10 +58,9 @@ class AssembliesController < ApplicationController
   end
 
   def set_assembly
-    @assembly = Assembly.find(params[:id])
+    @assembly = Assembly.includes(:book, :parts).find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def assembly_params
     params.require(:assembly).permit(:name, :book_id, part_ids: [])
   end

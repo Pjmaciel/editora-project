@@ -1,0 +1,4 @@
+<form id="search-form" action="<%= suppliers_path %>" method="get" class="lg:block hidden peer-focus:block lg:order-1 order-4 lg:pt-0 pt-4 w-full lg:w-auto">
+  <input type="search" name="q[name_cont]" id="search-input" class="form-input lg:w-auto w-full mt-4" placeholder="Search by supplier name" value="<%= params.dig(:q, :name_cont) %>" />
+  <input type="hidden" name="search_by_author" value="false" />
+</form>

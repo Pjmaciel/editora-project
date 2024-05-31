@@ -8,12 +8,11 @@
         </button>
 
         <form id="search-form" action="<%= suppliers_path %>" method="get" class="lg:block hidden peer-focus:block lg:order-1 order-4 lg:pt-0 pt-4 w-full lg:w-auto">
-          <input type="search" name="q[name_cont]" id="search-input" class="form-input lg:w-auto w-full mt-4" placeholder="Search by supplier name" value="<%= params.dig(:q, :name_cont) %>" />
-          <input type="search" name="author_name" id="author-search-input" class="form-input lg:w-auto w-full mt-4 hidden" placeholder="Search by author name" value="<%= params[:author_name] %>" />
+          <input type="search" name="q[name_cont]" id="search-input" class="form-input lg:w-auto w-full mt-4" placeholder="Search by supplier name" value="<%= params.dig(:q, :name_cont) %>"/>
+          <input type="search" name="author_name" id="author-search-input" class="form-input lg:w-auto w-full mt-4" placeholder="Search by author name" value="<%= params[:author_name] %>" />
           <div class="flex justify-center mt-2">
             <div class="flex items-center align-middle text-sm space-x-2">
-              <input type="checkbox" id="author-search-checkbox" class="form-checkbox" />
-              <label for="author-search-checkbox" class="ml-2 text-right">Search by author name</label>
+              <button type="submit" class="btn btn-primary mt-4">Search</button>
             </div>
           </div>
         </form>
@@ -50,65 +49,31 @@
       <div class="flex items-center justify-center sm:w-auto w-full sm:text-sm text-lg">
         <li>
           <%= link_to "1", "#", class:"py-2 px-4 border-t-2 block border-primary-500 hover:bg-primary-50/50 text-primary-600 dark:text-primary-400 dark:border-primary-400 dark:hover:bg-primary-500/30" %>
-            </li>
-            <li>
-              <%= link_to "2", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
-                </li>
-                <li>
-                  <%= link_to "3", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
-                    </li>
-                    <li>
-                      <span class="py-2 px-4 block border-t-2 border-transparent rounded pointer-events-none select-none">&hellip;</span>
-                    </li>
-                    <li>
-                      <%= link_to "8", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
-                        </li>
-                        <li>
-                          <%= link_to "9", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
-                            </li>
-                            <li>
-                              <%= link_to "10", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
-                                </li>
-                                </div>
-                                <li class="flex-1 flex justify-end items-center">
-                                  <%= link_to "Next", "#", class:"btn btn-white" %>
-                                    </li>
-                                    </ul>
-                                    </nav>
+        </li>
+        <li>
+          <%= link_to "2", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+        </li>
+        <li>
+          <%= link_to "3", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+        </li>
+        <li>
+          <span class="py-2 px-4 block border-t-2 border-transparent rounded pointer-events-none select-none">&hellip;</span>
+        </li>
+        <li>
+          <%= link_to "8", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+        </li>
+        <li>
+          <%= link_to "9", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+        </li>
+        <li>
+          <%= link_to "10", "#", class:"py-2 px-4 block border-t-2 border-transparent rounded hover:bg-zinc-50/50 dark:hover:bg-zinc-500/30 dark:hover:text-zinc-200" %>
+        </li>
+      </div>
+      <li class="flex-1 flex justify-end items-center">
+        <%= link_to "Next", "#", class:"btn btn-white" %>
+      </li>
+    </ul>
+  </nav>
 </div>
 
-
 <%= render "shared/footer" %>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('search-input');
-        const authorSearchInput = document.getElementById('author-search-input');
-        const searchForm = document.getElementById('search-form');
-        const authorSearchCheckbox = document.getElementById('author-search-checkbox');
-
-        const toggleAuthorSearch = () => {
-            if (authorSearchCheckbox.checked) {
-                authorSearchInput.classList.remove('hidden');
-                searchInput.classList.add('hidden');
-            } else {
-                authorSearchInput.classList.add('hidden');
-                searchInput.classList.remove('hidden');
-            }
-        };
-
-        const submitForm = () => {
-            searchForm.submit();
-        };
-
-        authorSearchCheckbox.addEventListener('change', toggleAuthorSearch);
-        searchInput.addEventListener('input', submitForm);
-        authorSearchInput.addEventListener('input', submitForm);
-
-        toggleAuthorSearch(); // Initialize the correct state on page load
-
-        const length = searchInput.value.length;
-        searchInput.focus();
-        searchInput.setSelectionRange(length, length);
-    });
-</script>
